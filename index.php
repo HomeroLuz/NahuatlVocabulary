@@ -35,17 +35,75 @@
         </header>
         
         <!--Barra de Navegacion-->
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Cambiar Navegacion</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="views/login.php" class="navbar-brand">Ingresar</a>
-            </div>
-        </nav>
+        <?php
+            session_start();
+            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+        ?>
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Cambiar Navegacion</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <?php
+                        if($_SESSION['type'] == 0){
+                    ?>
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.php">Inicio</a></li>
+                            <li><a href="views/abbreviations.php">Abreviaturas</a></li>
+                            <li><a href="views/wordInformationRegister.php">Registrar nueva palabra</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="controller/logout.php">Cerrar sesión</a></li>
+                        </ul>
+                    <?php
+                        } else if($_SESSION['type'] == 1){ 
+                    ?>
+                        <ul class="nav navbar-nav">
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="controller/logout.php">Cerrar sesión</a></li>
+                        </ul>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </nav>
+        <?php
+            } else {
+        ?>
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Cambiar Navegacion</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="views/login.php" class="navbar-brand">Ingresar</a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="views/abbreviations.php">Abreviaturas</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Acerca de</a></li>
+                    </ul>
+                </div>
+            </nav>
+        <?php
+            }
+        ?>
 
         <div class="container">
             <section class="color2">
