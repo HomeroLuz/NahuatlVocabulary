@@ -270,18 +270,75 @@ header
         page-break-after: avoid;
     }
 }
+
 /* ==========================================================================
-   Estilos propios del proyecto
+   Paginator
+   ========================================================================== */
+.paginator ul {
+    padding: 15px;
+    list-style: none;
+    background: #FFFF;
+    margin-top: 15px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10px
+}
+.paginator a {
+    color: #428BCA;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    width: 35px;
+}
+.paginator a:hover{
+    background: #ddd;
+}
+.pageSelected{
+    color: #FFFF;
+    background: #46CFFF;
+    border: 1px solid #46CFFF;
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    width: 35px;
+}
+
+/* ==========================================================================
+   Buscador
+   ========================================================================== */
+.form_search{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    float: right;
+    background: initial;
+    padding: 10px;
+    border-radius: 10px;
+}
+.form_search, .btn_search{
+    background: #1FAAC8
+    color: #FFFFFF;
+    padding: 0 20px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* ==========================================================================
+   Páginas
    ========================================================================== */
 /*index*/
 .textoH1
 {
-    /*color: white;
-    font-family: 'Tangerine', serif;*/
-    /*font-family: Arial, Helvetica, sans-serif;
-    font: oblique bold 120% cursive;
-    text-shadow: 4px 4px 4px #aaa;
-    text-align: left; */
 font: oblique bold cursive;
 font-family: Arial;
 color: #374954; 

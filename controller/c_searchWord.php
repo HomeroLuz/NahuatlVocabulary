@@ -2,7 +2,7 @@
     @Autor: Homero Luz
 -->
 <?php
-    include('config/config.php');
+    include('../config/config.php');
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -13,8 +13,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -28,7 +28,7 @@
                         <h5 class="texto tamtex2">Náhuatl o Nahua el idioma de los Mexicas (Aztecas)</h5>
                     </div>
                     <div class="hidden-xs col-sm-6 col-md-4 col-lg-4 centrar">
-                        <a href="#"><img src="img/port3.jpg" alt=""></a>
+                        <a href="#"><img src="../img/port3.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -49,11 +49,18 @@
 
         <div class="container">
             <section class="color2">
+                <?php 
+                    $searchFilter = $_REQUEST['searchFilter'];
+
+                    if (empty($searchFilter)) {
+                        header("location: ../index.php");
+                    }
+                ?>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <?php 
                             //Paginador
-                            $sqlIndexPaginator = "SELECT Count(*) as total_index FROM wordinformation";
+                            $sqlIndexPaginator = "SELECT Count(*) as total_index FROM wordinformation WHERE vocabularyWord LIKE '%$searchFilter%' OR meaningSpanish LIKE '%$searchFilter%'";
                             $countPaginator = $conexion->query($sqlIndexPaginator);
                             $resultPaginator = mysqli_fetch_array($countPaginator);
                             $totalRegister = $resultPaginator['total_index'];
@@ -69,13 +76,13 @@
                             $since = ($pageNumber - 1) * $itemsPerPage;
                             $totalPages = ceil($totalRegister / $itemsPerPage);
 
-                            $wordInformationList = "SELECT idWordInformation, vocabularyWord, wordAbbreviation, meaningSpanish, usageExample, registrationDate FROM wordinformation 
+                            $wordInformationList = "SELECT idWordInformation, vocabularyWord, wordAbbreviation, meaningSpanish, usageExample, registrationDate FROM wordinformation WHERE vocabularyWord LIKE '%$searchFilter%' OR meaningSpanish LIKE '%$searchFilter%' 
                                 ORDER BY vocabularyWord ASC
                                 LIMIT $since, $itemsPerPage";
                             $result = $conexion->query($wordInformationList);
                         ?>
                         <h3>Realizar busqueda página: <?php echo $pageNumber; ?></h3>
-                        <form action="controller/c_searchWord.php" method="get" class="form_search">
+                        <form action="c_searchWord.php" method="get" class="form_search">
                             <input type="text" name="searchFilter" id="searchFilter" placeholder="Buscar" class="form-control">
                             <input type="submit" value="Buscar" class="btn btn_primary btn_search"
                             >
@@ -112,6 +119,9 @@
                                 ?>
                             </table>
                         </div>
+                        <?php 
+                            if ($totalRegister != 0) {
+                        ?>
                         <div class="paginator">
                             <ul class="col-md-12 col-sm-6 col-xs-12">
                                 <?php 
@@ -119,8 +129,8 @@
 
 
                                 ?>
-                                <li><a href="index.php?pageNumber=1">|<</a></li>
-                                <li><a href="index.php?pageNumber=<?php echo $pageNumber - 1; ?>"><<</a></li>
+                                <li><a href="?pageNumber=<?php echo 1; ?>&searchFilter=<?php echo $searchFilter; ?>">|<</a></li>
+                                <li><a href="?pageNumber=<?php echo $pageNumber - 1; ?>&searchFilter=<?php echo $searchFilter; ?>"><<</a></li>
                                 <?php 
                                     }
 
@@ -128,18 +138,20 @@
                                         if ($i == $pageNumber) {
                                             echo '<li class="pageSelected">'.$i.'</li>';
                                         } else{
-                                            echo '<li><a href="index.php?pageNumber='.$i.'">'.$i.'</a></li>';    
+                                            echo '<li><a href="?pageNumber='.$i.'&searchFilter='.$searchFilter.'">'.$i.'</a></li>';    
                                         }
                                     }
 
                                     if ($pageNumber != $totalPages) {
                                 ?>
-                                <li><a href="index.php?pageNumber=<?php echo $pageNumber + 1;?>">>></a></li>
-                                <li><a href="index.php?pageNumber=<?php echo $totalPages; ?>">>|</a></li>
+                                <li><a href="?pageNumber=<?php echo $pageNumber + 1;?>&searchFilter=<?php echo $searchFilter; ?>">>></a></li>
+                                <li><a href="?pageNumber=<?php echo $totalPages; ?>&searchFilter=<?php echo $searchFilter; ?>">>|</a></li>
                                 <?php } ?>
                             </ul>
                         </div>
-
+                        <?php 
+                            }
+                        ?>
                     </div>
                 </div>
             </section><br/>
@@ -154,16 +166,16 @@
 
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="img/banner1.jpg" class="adaptar">
+                        <img src="../img/banner1.jpg" class="adaptar">
                     </div>
                     <div class="item">
-                        <img src="img/banner2.jpg" class="adaptar">
+                        <img src="../img/banner2.jpg" class="adaptar">
                     </div>
                     <div class="item">
-                        <img src="img/banner3.jpg" class="adaptar">
+                        <img src="../img/banner3.jpg" class="adaptar">
                     </div>
                     <div class="item">
-                        <img src="img/banner4.jpg" class="adaptar">
+                        <img src="../img/banner4.jpg" class="adaptar">
                     </div>
                 </div>
 
@@ -174,7 +186,7 @@
             <section>
                 <div class="row">
                     <div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
-                        <br><br><img src="img/centerImg.jpg" class="img-responsive">
+                        <br><br><img src="../img/centerImg.jpg" class="img-responsive">
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <h3>EL IDIOMA NÁHUATL</h3><hr>
@@ -225,9 +237,9 @@
             </center>
         </footer>
         
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-        <script src="js/vendor/bootstrap.js"></script>
-        <script src="js/main.js"></script>
+        <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script src="../js/vendor/bootstrap.js"></script>
+        <script src="../js/main.js"></script>
     </body>
 </html>
 ss
