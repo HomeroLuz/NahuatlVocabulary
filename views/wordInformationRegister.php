@@ -32,13 +32,11 @@
 		<div class="form-group">
             <label for="meaningSpanish">&emsp;Significado en Español:</label>
             <textarea class="form-control" rows="3" name="meaningSpanish" id="meaningSpanish" required="true"></textarea>
-            <small id="observationsHelp" class="form-text text-muted">&emsp;IMPORTANTE en caso de Citología indique tipo(Impronta, PAF, Raspado o H isopado). Especifique: tiempo de aparación, localización, tamaño, apariencia, tipo de tinción requerido.<br/>&emsp;Para EGO: Indique método de obtencion(Micción espontanea, Sondeo, Citocentésis, etc)</small>
         </div>
 
 		<div class="form-group">
             <label for="usageExample">&emsp;Ejemplo de la palabra:</label>
             <textarea class="form-control" rows="3" name="usageExample" id="usageExample"></textarea>
-            <small id="usageExampleHelp" class="form-text text-muted">&emsp;IMPORTANTE en caso de Citología indique tipo(Impronta, PAF, Raspado o H isopado). Especifique: tiempo de aparación, localización, tamaño, apariencia, tipo de tinción requerido.<br/>&emsp;Para EGO: Indique método de obtencion(Micción espontanea, Sondeo, Citocentésis, etc)</small>
         </div>
 
 		<div class="contentCenter">

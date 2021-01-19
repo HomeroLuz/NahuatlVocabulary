@@ -19,7 +19,7 @@
 			include('menuAnonymous.php');
 		}
 	?>	
-	<label><h3>&ensp;DATOS PERSONALES</h3></label><br/>
+	<label><h3>&ensp;ABREVIATURAS</h3></label><br/>
 	<hr/>
 	<div class="table-responsive">
 		<table>
